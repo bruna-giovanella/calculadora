@@ -40,9 +40,14 @@ while True:
 
         def divisao(*args):
             quociente = args[0]
+            
             for i in args[1:]:
+                if i == 0:
+                    raise ValueError('Não é possivel dividir um número por zero')
                 quociente /= i
             print(f'divisao = {quociente}')
+
+            
 
 
         # Chamando a função de acordo com a opção selecionada
@@ -63,3 +68,6 @@ while True:
         break
     else:
         calculadora
+
+
+
