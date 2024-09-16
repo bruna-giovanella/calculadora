@@ -7,50 +7,53 @@ while True:
         def action():
             global operacao 
             operacao = int(input('\n1-adição\n2-subtração\n3-multiplicação\n4-divisão\n\nQual operação você deseja realizar? '))
-            print('operacao dentro',operacao) #TESTE
-
 
             if operacao != 1 and operacao != 2 and operacao != 3 and operacao != 4:
                 print('O valor informado é invalido :(\nPor favor, insere um novo valor, válido')
                 action() 
             else: 
-                print('Certo! Para prosseguirmos, preciso que informe dois valores')
-                global a
-                global b
-                a = float(input('valor a: '))
-                b = float(input('valor b: '))
+                print('Certo! Para prosseguirmos, preciso que informe os valores que serão operados\nSepare os valores com espaços')
+                global numeros
+                numeros = list(map(float, input('valores: ').split()))
         
         action()
         
 
         # Funções de operação
-        def adicao(a,b):
-            soma = a+b
-            print(f'{a} + {b} = {soma}')
+        def adicao(*args):
+            soma = sum(args)
+            print(f'adicao = {soma}')
+            
 
-        def subtracao(a,b):
-            diferenca = a-b
-            print(f'{a} - {b} = {diferenca}')
+        def subtracao(*args):
+            diferenca = args[0]
+            for i in args[1:]:
+                diferenca -= i
+            print(f'subtração = {diferenca}')
 
 
-        def multiplicacao(a,b):
-            produto = a*b
-            print(f'{a} * {b} = {produto}')
+        def multiplicacao(*args):
+            produto = args[0]
+            for i in args[1:]:
+                produto *= i
+            print(f'multiplicacao = {produto}')
 
-        def divisao(a,b):
-            quociente = a/b
-            print(f'{a} / {b} = {quociente}')
+        def divisao(*args):
+            quociente = args[0]
+            for i in args[1:]:
+                quociente /= i
+            print(f'divisao = {quociente}')
 
 
         # Chamando a função de acordo com a opção selecionada
         if operacao == 1:
-            adicao(a,b)
+            adicao(*numeros)
         if operacao == 2:
-            subtracao(a,b)
+            subtracao(*numeros)
         if operacao == 3:
-            multiplicacao(a,b)
+            multiplicacao(*numeros)
         if operacao == 4:
-            divisao(a,b)
+            divisao(*numeros)
 
         
 
